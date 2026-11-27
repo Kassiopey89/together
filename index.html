@@ -112,7 +112,7 @@
         <h2 class="track-title" id="trackTitle">Enter</h2>
         <p class="track-artist" id="trackArtist">零 (L.E.I.)</p>
 
-        <audio id="audio" preload="metadata" autoplay>
+        <audio id="audio" preload="metadata">
           <source src="track.mp3" type="audio/mpeg">
           Ваш браузер не поддерживает воспроизведение аудио.
         </audio>
@@ -261,6 +261,7 @@
 	  const playerStatus = document.getElementById('playerStatus');
 
 	  if (!audio || !playButton || !progress || !volume) return;
+	  audio.autoplay = false;
 
 	  // Настройки плавного изменения громкости
 	  const fadeInSeconds = 7;
