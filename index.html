@@ -838,13 +838,41 @@ audio.addEventListener('pause', () => {
         if (!animationFrame && !document.hidden) startAnimation();
       }
 
-      // Отдельные слои спектра в шапках блоков и нижняя общая диаграмма.
-      const panelSpectrumSurfaces = Array.from(document.querySelectorAll('.panel-spectrum-canvas')).map(canvas => ({
-        canvas,
-        context: canvas.getContext('2d'),
-        width: 0,
-        height: 0
-      }));
+      // Отдельные слои спектра. Переносим canvas в body, чтобы overflow карточек
+      // не обрезал столбики, которые должны выступать над верхней границей блоков.
+      const panelSpectrumSurfaces = Array.from(document.querySelectorAll('.panel-spectrum-canvas')).map(canvas => {
+        const anchor = canvas.closest('.side-panel, .music-card');
+        const surface = {
+          canvas,
+          context: canvas.getContext('2d'),
+          width: 0,
+          height: 0,
+          anchor
+        };
+        document.body.appendChild(canvas);
+        return surface;
+      });
+      const panelSpectrumHeight = 30;
+
+      // Позиционируем спектр над рамкой каждой карточки. Нижняя линия спектра
+      // совпадает с верхней кромкой блока, а столбики растут вверх, наружу.
+      function positionPanelSpectrumCanvases() {
+        panelSpectrumSurfaces.forEach(surface => {
+          if (!surface.anchor) return;
+          const rect = surface.anchor.getBoundingClientRect();
+          const style = window.getComputedStyle(surface.anchor);
+          const canvas = surface.canvas;
+          canvas.style.left = `${Math.round(rect.left + 8)}px`;
+          canvas.style.top = `${Math.round(rect.top - panelSpectrumHeight + 1)}px`;
+          canvas.style.width = `${Math.max(0, Math.round(rect.width - 16))}px`;
+          canvas.style.height = `${panelSpectrumHeight}px`;
+          // Повторяем прозрачность/видимость родительской карточки, включая
+          // её последовательное исчезновение и обратное появление.
+          canvas.style.opacity = style.opacity;
+          canvas.style.visibility = style.visibility;
+        });
+      }
+
       const immersiveSpectrumElement = document.getElementById('immersiveSpectrum');
       const immersiveSpectrumSurface = immersiveSpectrumElement ? {
         canvas: immersiveSpectrumElement,
@@ -981,6 +1009,10 @@ audio.addEventListener('pause', () => {
           const smoothing = target > levels[i] ? 0.34 : 0.12;
           levels[i] += (target - levels[i]) * smoothing;
         }
+
+        // Сначала обновляем геометрию плавающих Canvas: они находятся вне
+        // карточек, поэтому не обрезаются их внутренней прокруткой/overflow.
+        positionPanelSpectrumCanvases();
 
         if (immersive) {
           drawSpectrumSurface(immersiveSpectrumSurface, levels, 0, 1, true, playing);

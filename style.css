@@ -911,17 +911,19 @@ body.is-immersive .aura-canvas {
 }
 
 .panel-spectrum-canvas {
-  position: absolute;
-  top: -13px;
-  left: 8px;
-  z-index: 5;
+  /* Canvas находится в body и не обрезается overflow карточек. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
   display: block;
-  width: calc(100% - 16px);
-  height: 34px;
+  width: 0;
+  height: 30px;
   pointer-events: none;
   opacity: 0.98;
   -webkit-mask-image: none;
   mask-image: none;
+  mix-blend-mode: screen;
 }
 
 .immersive-spectrum-canvas {
@@ -945,13 +947,6 @@ body.is-immersive .immersive-spectrum-canvas {
 }
 
 @media (max-width: 780px) {
-  .panel-spectrum-canvas {
-    left: 6px;
-    top: -10px;
-    width: calc(100% - 12px);
-    height: 30px;
-  }
-
   .immersive-spectrum-canvas {
     bottom: 6px;
     height: 46px;
