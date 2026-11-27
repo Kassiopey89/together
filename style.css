@@ -958,3 +958,52 @@ body.is-immersive .immersive-spectrum-canvas {
     transition: none !important;
   }
 }
+
+/* Перенос управления интерфейсом в верхнюю центральную часть экрана. */
+.interface-toggle {
+  top: 18px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+.immersive-dock {
+  top: 18px;
+  bottom: auto;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100vw - 28px);
+  transform: translate(-50%, -14px);
+}
+
+body.is-immersive .immersive-dock {
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 780px) {
+  .interface-toggle {
+    top: 12px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .immersive-dock {
+    top: 12px;
+    bottom: auto;
+    left: 50%;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    transform: translate(-50%, -14px);
+    justify-content: center;
+  }
+
+  body.is-immersive .immersive-dock {
+    transform: translate(-50%, 0);
+  }
+
+  .show-interface-button {
+    flex: 0 1 auto;
+    white-space: nowrap;
+  }
+}
