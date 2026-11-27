@@ -595,14 +595,13 @@ audio.addEventListener('pause', () => {
 		updateFloatingButton();
 		}
 
-		// Escape возвращает панели.
+		// Escape переключает режим: скрывает интерфейс или возвращает его.
 		document.addEventListener('keydown', event => {
-		if (
-		event.key === 'Escape' &&
-		document.body.classList.contains('is-immersive')
-		) {
-		setImmersive(false);
-		}
+		if (event.key !== 'Escape' || event.repeat) return;
+		
+		const isImmersive = document.body.classList.contains('is-immersive');
+		event.preventDefault();
+		setImmersive(!isImmersive);
 		});
 		})();
 	</script>\n  <script>
