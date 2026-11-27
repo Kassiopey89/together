@@ -933,7 +933,7 @@ body.is-immersive .aura-canvas {
   z-index: 15;
   display: block;
   width: 100vw;
-  height: 52px;
+  height: 92px;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -949,7 +949,7 @@ body.is-immersive .immersive-spectrum-canvas {
 @media (max-width: 780px) {
   .immersive-spectrum-canvas {
     bottom: 54px;
-    height: 46px;
+    height: 78px;
   }
 }
 
