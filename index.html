@@ -924,7 +924,7 @@ audio.addEventListener('pause', () => {
         const barWidth = Math.max(0.85, (usableWidth - gap * (count - 1)) / count);
         const baseline = h - 1;
         const maxHeight = isImmersive
-          ? Math.min(isSmallScreen ? 64 : 78, h - 6)
+          ? Math.min(isSmallScreen ? 96 : 118, h - 14)
           : Math.min(28, h - 4);
 
         // Тихая световая линия основания остаётся видимой и в паузе.
