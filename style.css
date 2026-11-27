@@ -929,7 +929,7 @@ body.is-immersive .aura-canvas {
 .immersive-spectrum-canvas {
   position: fixed;
   left: 0;
-  bottom: 8px;
+  bottom: 64px;
   z-index: 15;
   display: block;
   width: 100vw;
@@ -948,7 +948,7 @@ body.is-immersive .immersive-spectrum-canvas {
 
 @media (max-width: 780px) {
   .immersive-spectrum-canvas {
-    bottom: 6px;
+    bottom: 54px;
     height: 46px;
   }
 }
@@ -959,51 +959,53 @@ body.is-immersive .immersive-spectrum-canvas {
   }
 }
 
-/* Перенос управления интерфейсом в верхнюю центральную часть экрана. */
-.interface-toggle {
-  top: 18px;
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
+
+/* Жёсткое позиционирование обеих панелей управления: верхний центр экрана. */
+body .interface-toggle {
+  position: fixed !important;
+  top: max(12px, env(safe-area-inset-top)) !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: 50% !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  transform: translate3d(-50%, 0, 0) !important;
 }
 
-.immersive-dock {
-  top: 18px;
-  bottom: auto;
-  left: 50%;
-  width: max-content;
-  max-width: calc(100vw - 28px);
-  transform: translate(-50%, -14px);
+body .immersive-dock {
+  position: fixed !important;
+  top: max(12px, env(safe-area-inset-top)) !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: 50% !important;
+  width: max-content !important;
+  max-width: calc(100vw - 24px) !important;
+  margin: 0 !important;
+  z-index: 10000 !important;
+  transform: translate3d(-50%, -14px, 0) !important;
+  transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s !important;
 }
 
 body.is-immersive .immersive-dock {
-  transform: translate(-50%, 0);
+  top: max(12px, env(safe-area-inset-top)) !important;
+  bottom: auto !important;
+  left: 50% !important;
+  transform: translate3d(-50%, 0, 0) !important;
+  transition: opacity .35s ease, transform .35s ease, visibility 0s !important;
 }
 
 @media (max-width: 780px) {
-  .interface-toggle {
-    top: 12px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-
-  .immersive-dock {
-    top: 12px;
-    bottom: auto;
-    left: 50%;
-    width: max-content;
-    max-width: calc(100vw - 24px);
-    transform: translate(-50%, -14px);
-    justify-content: center;
-  }
-
+  body .interface-toggle,
+  body .immersive-dock,
   body.is-immersive .immersive-dock {
-    transform: translate(-50%, 0);
+    top: max(10px, env(safe-area-inset-top)) !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
   }
 
-  .show-interface-button {
-    flex: 0 1 auto;
-    white-space: nowrap;
+  body .show-interface-button {
+    flex: 0 1 auto !important;
+    white-space: nowrap !important;
   }
 }
