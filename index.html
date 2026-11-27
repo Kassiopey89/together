@@ -853,9 +853,11 @@ audio.addEventListener('pause', () => {
         return surface;
       });
       const panelSpectrumHeight = 30;
+      // Оставляем заметный воздушный зазор: нижняя линия спектра находится
+      // на 14 px выше верхней рамки карточки, а не на самой рамке.
+      const panelSpectrumGap = 6;
 
-      // Позиционируем спектр над рамкой каждой карточки. Нижняя линия спектра
-      // совпадает с верхней кромкой блока, а столбики растут вверх, наружу.
+      // Позиционируем спектр полностью снаружи и над карточками.
       function positionPanelSpectrumCanvases() {
         panelSpectrumSurfaces.forEach(surface => {
           if (!surface.anchor) return;
@@ -863,7 +865,7 @@ audio.addEventListener('pause', () => {
           const style = window.getComputedStyle(surface.anchor);
           const canvas = surface.canvas;
           canvas.style.left = `${Math.round(rect.left + 8)}px`;
-          canvas.style.top = `${Math.round(rect.top - panelSpectrumHeight + 1)}px`;
+          canvas.style.top = `${Math.round(rect.top - panelSpectrumHeight - panelSpectrumGap + 1)}px`;
           canvas.style.width = `${Math.max(0, Math.round(rect.width - 16))}px`;
           canvas.style.height = `${panelSpectrumHeight}px`;
           // Повторяем прозрачность/видимость родительской карточки, включая
