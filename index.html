@@ -1,140 +1,1100 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#090b18">
-  <title>Проклятый кубок</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a16">
+  <meta name="description" content="Погружаясь в грёзы — пространство музыки, образов и текстов.">
+  <title>ともに</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="backdrop"></div>
+  <div class="page-backdrop" aria-hidden="true"></div>
+  <div class="page-shade" aria-hidden="true"></div>
+  <canvas class="aura-canvas" id="auraCanvas" aria-hidden="true"></canvas>
+  <button class="interface-toggle" id="interfaceToggle" type="button">
+	◉ Скрыть интерфейс
+</button>
 
-  <main class="stage">
-    <section class="player">
+  <main class="page-shell">
+    <header class="site-heading">
+      <!-- <p class="eyebrow">МУЗЫКА · ОБРАЗЫ · МЫСЛИ</p> -->
+      <!--<h1>ずっと一緒</h1>-->
+    </header>
 
-      <div class="eyebrow">Проклятый кубок</div>
+    <section class="three-column-layout" aria-label="Музыкальная страница">
+      <!-- ЛЕВАЯ КОЛОНКА: замени заголовок и содержимое на свои материалы. -->
+      <aside class="side-panel side-panel-left">
+        <canvas class="panel-spectrum-canvas" data-spectrum-part="low" aria-hidden="true"></canvas>
+        <div class="panel-ornament" aria-hidden="true">✧</div>
+        <h2>Текст песни</h2>
+        <div class="ornamental-rule" aria-hidden="true"><span>✧</span></div>
 
-      <div class="cover-wrap">
-        <img
-          class="cover"
-          src="cover.png"
-          alt="Lacrimosa — Kelch der Liebe"
-        >
-      </div>
+        <div class="panel-content">
+          <p>
+			  <p>I'd rather walk with you in dark than alone in light<br>
+			  I found a way 世界の果てへ<br>
+			  （There's no limit...）<br>
+			  辿り着ける ひとりじゃないなら<br>
+			  So very far away?? It's not that far away<br>
+			  There is no limit<br></p>
 
-      <h1>Kelch der Liebe</h1>
-      <p class="artist">Lacrimosa</p>
+			  <p>運命に引き寄せられ交わった仲間たち<br>
+			  共に四つ葉に祈り命懸け踏み出した足<br>
+			  I'm alright I'm alright<br>
+			  It's gonna be alright alright<br>
+			  リスクはいつも隣り合わせでも<br>
+			  躍る心 身を委ねReady set go<br>
+			  何が起きてもGo forward Go forward<br>
+			  乗り越えていこう Grow up Grow up<br></p>
 
-      <div class="audio-player">
-        <audio id="audio" preload="metadata">
+			  <p>Don't be afraid この旅<br>
+			  I wanna see 世界の端<br>
+			  困難な迷宮（ダンジョン）燃える質<br>
+			  踏破目指す深淵の扉（アビスゲート）<br>
+			  夢のための冒険<br></p>
+
+			  <p>I'd rather walk with you in dark than alone in light<br>
+			  I found a way 世界の果てへ<br>
+			  （There's no limit...）<br>
+			  辿り着けるひとりじゃないなら<br>
+			  So very far away?? It's not that far away<br>
+			  There is no limit<br></p>
+
+			  <p>Oh yeah<br>
+			  Let's get it 見せてあげよう<br>
+			  積み重ねてきたモノ<br>
+			  どんなマイナスさえもプラスに変え上げてく階層<br>
+			  誰にも止められやしないもう<br>
+			  巻かれない長いもの<br>
+			  Rise above<br>
+			  信念のもと巻き起こしてく暴風（サイクロン）<br></p>
+
+			  <p>自分で決めた道<br>
+			  揺るがない使命と意志<br>
+			  ありふれた誰かに作られた物語はいらない<br>
+			  This is my story Alright?<br></p>
+
+			  <p>I'd rather walk with you in dark than alone in light<br>
+			  I found a way 世界の果てへ<br>
+			  （There's no limit...）<br>
+			  辿り着けるひとりじゃないなら<br>
+			  So very far away?? It's not that far away<br>
+			  There is no limit<br></p>
+
+			  <p>朽ちることなく輝け<br>
+			  偽りないありのままで<br>
+			  見失わない I'll go my way<br>
+			  導き出してきた答え<br></p>
+		  </p>
+        </div>
+
+        <div class="panel-bottom-mark" aria-hidden="true">✧</div>
+      </aside>
+
+      <!-- ЦЕНТРАЛЬНЫЙ МУЗЫКАЛЬНЫЙ ПЛЕЕР. Файлы track.mp3 и cover.png должны лежать рядом с index.html. -->
+      <section class="music-card" aria-label="Музыкальный плеер">
+        <canvas class="panel-spectrum-canvas" data-spectrum-part="mid" aria-hidden="true"></canvas>
+        <div class="panel-ornament" aria-hidden="true">✧</div>
+        <p class="eyebrow player-eyebrow"></p>
+
+        <div class="cover-frame">
+          <img
+            class="cover-image"
+            src="cover.png"
+            alt="Обложка музыкальной композиции"
+            onerror="this.classList.add('image-missing')"
+          >
+          <div class="cover-fallback" aria-hidden="true">♫</div>
+        </div>
+
+        <!-- Замени название и исполнителя на свои. -->
+        <h2 class="track-title" id="trackTitle">Enter</h2>
+        <p class="track-artist" id="trackArtist">零 (L.E.I.)</p>
+
+        <audio id="audio" preload="metadata" autoplay>
           <source src="track.mp3" type="audio/mpeg">
           Ваш браузер не поддерживает воспроизведение аудио.
         </audio>
 
-        <button id="playButton" class="play-button" aria-label="Воспроизвести">
-          ▶
-        </button>
-
-        <div class="audio-controls">
-          <div class="progress-container">
-            <span id="currentTime">0:00</span>
-            <input
-              id="progress"
-              type="range"
-              min="0"
-              max="100"
-              value="0"
-              step="0.1"
-            >
-            <span id="duration">0:00</span>
-          </div>
-
-          <div class="volume-container">
-            <span>♫</span>
-            <input
-              id="volume"
-              type="range"
-              min="0"
-              max="1"
-              value="0.25"
-              step="0.01"
-              aria-label="Громкость"
-            >
-          </div>
+        <div class="playback-controls">
+          <button class="play-button" id="playButton" type="button" aria-label="Воспроизвести">
+			  <span class="play-symbol" aria-hidden="true"></span>
+          </button>
         </div>
-      </div>
 
-      <div class="footer-note">Его вкус меняет навсегда</div>
+        <div class="timeline-row">
+          <span class="time-label" id="currentTime">0:00</span>
+          <input
+            class="range-input seek-input"
+            id="progress"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+            aria-label="Позиция воспроизведения"
+          >
+          <span class="time-label" id="duration">0:00</span>
+        </div>
 
+        <div class="volume-row">
+          <span class="volume-icon" aria-hidden="true">♪</span>
+          <input
+            class="range-input volume-input"
+            id="volume"
+            type="range"
+            min="0"
+            max="1"
+            value="0.10"
+            step="0.01"
+            aria-label="Громкость"
+          >
+          <span class="volume-value" id="volumeValue">10%</span>
+        </div>
+
+       <!-- <p class="player-status" id="playerStatus" role="status" aria-live="polite">A quiet place beyond the noise</p> -->
+        <div class="panel-bottom-mark" aria-hidden="true">✧</div>
+      </section>
+
+      <!-- ПРАВАЯ КОЛОНКА: здесь может быть перевод, пояснение, галерея или другой блок. -->
+      <aside class="side-panel side-panel-right">
+        <canvas class="panel-spectrum-canvas" data-spectrum-part="high" aria-hidden="true"></canvas>
+        <div class="panel-ornament" aria-hidden="true">✧</div>
+        <h2>Перевод песни</h2>
+        <div class="ornamental-rule" aria-hidden="true"><span>✧</span></div>
+
+        <div class="panel-content">
+          <p>
+			  <p>Я лучше буду идти с тобой во тьме, чем в одиночестве при свете.<br>
+			  Я нашёл путь к самым краям этого мира.<br>
+			  (Нет никаких границ...)<br>
+			  Если я смогу добраться туда, главное — чтобы я был не один.<br>
+			  Так далеко? Нет, это не так уж далеко.<br>
+			  Нет никаких границ.<br></p>
+
+			  <p>Судьба свела вместе товарищей, которых объединило одно стремление.<br>
+			  Вместе, загадывая желание на четырёхлистном клевере,<br>
+			  рискуя жизнью с каждым новым шагом.<br>
+			  Всё хорошо, всё хорошо.<br>
+			  Всё обязательно будет хорошо.<br>
+			  Опасность всегда где-то рядом с нами.<br>
+			  С сердцем, полным волнения, я отдаюсь этому чувству.<br>
+			  На старт, внимание, марш!<br>
+			  Что бы ни случилось — вперёд, вперёд!<br>
+			  Давай преодолеем всё и станем сильнее!<br></p>
+
+			  <p>Не бойся этого путешествия.<br>
+			  Я хочу увидеть край света.<br>
+			  Сложный лабиринт, пылающий невероятной мощью.<br>
+			  Мы стремимся покорить врата бездны.<br>
+			  Это приключение ради наших мечтаний.<br></p>
+
+			  <p>Я лучше буду идти с тобой во тьме, чем в одиночестве при свете.<br>
+			  Я нашёл путь к самым краям этого мира.<br>
+			  (Нет никаких границ...)<br>
+			  Если я смогу добраться туда, главное — чтобы я был не один.<br>
+			  Так далеко? Нет, это не так уж далеко.<br>
+			  Нет никаких границ.<br></p>
+
+			  <p>О да!<br>
+			  Давай, я покажу тебе,<br>
+			  чего мне удалось достичь.<br>
+			  Превращая даже любой негатив в позитив,<br>
+			  поднимаясь всё выше, слой за слоем.<br>
+			  Теперь уже никто не сможет нас остановить.<br>
+			  Длинный путь разворачивается перед нами.<br>
+			  Поднимись над всем!<br>
+			  Циклон, пробуждающийся в самой основе веры.<br></p>
+
+			  <p>Путь, который я выбрал для себя.<br>
+			  Непоколебимая миссия и несгибаемая воля.<br>
+			  Мне не нужна история, придуманная кем-то заурядным.<br>
+			  Это моя история. Понял?<br></p>
+
+			  <p>Я лучше буду идти с тобой во тьме, чем в одиночестве при свете.<br>
+			  Я нашёл путь к самым краям этого мира.<br>
+			  (Нет никаких границ...)<br>
+			  Если я смогу добраться туда, главное — чтобы я был не один.<br>
+			  Так далеко? Нет, это не так уж далеко.<br>
+			  Нет никаких границ.<br></p>
+
+			  <p>Сиять, не угасая.<br>
+			  Оставаться верным самому себе, не прибегая ко лжи.<br>
+			  Я не потеряю свой ориентир. Я пойду своей дорогой.<br>
+			  Я нашёл ответы и помог им обрести свой путь.<br></p>
+		  </p>
+        </div>
+
+        <div class="panel-bottom-mark" aria-hidden="true">✧</div>
+      </aside>
     </section>
+
+	  <!--<footer class="site-footer">A QUIET PLACE BEYOND THE NOISE</footer>-->
   </main>
+	<canvas class="immersive-spectrum-canvas" id="immersiveSpectrum" aria-hidden="true"></canvas>
+	<div class="immersive-dock" id="immersiveDock">
+		<button
+		  class="mini-play-button"
+		  id="floatingPlayButton"
+		  type="button"
+		  aria-label="Воспроизвести"
+  >▶</button>
 
+		<button
+		  class="show-interface-button"
+		  id="showInterfaceButton"
+		  type="button"
+  >
+			Показать интерфейс
+		</button>
+	</div>
   <script>
-    const audio = document.getElementById("audio");
-    const playButton = document.getElementById("playButton");
-    const progress = document.getElementById("progress");
-    const volume = document.getElementById("volume");
-    const currentTime = document.getElementById("currentTime");
-    const duration = document.getElementById("duration");
+	  (() => {
+	  const audio = document.getElementById('audio');
+	  const playButton = document.getElementById('playButton');
+	  const progress = document.getElementById('progress');
+	  const volume = document.getElementById('volume');
+	  const currentTimeLabel = document.getElementById('currentTime');
+	  const durationLabel = document.getElementById('duration');
+	  const volumeValue = document.getElementById('volumeValue');
+	  const playerStatus = document.getElementById('playerStatus');
 
-    audio.volume = 0.25;
+	  if (!audio || !playButton || !progress || !volume) return;
 
-    function formatTime(seconds) {
-      if (!Number.isFinite(seconds)) return "0:00";
+	  // Настройки плавного изменения громкости
+	  const fadeInSeconds = 7;
+	  const fadeOutSeconds = 10;
 
-      const minutes = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
+	  let targetVolume = Number(volume.value);
+	  let fadeFrame = null;
 
-      return `${minutes}:${String(secs).padStart(2, "0")}`;
+	  function updateFadeVolume() {
+	  let level = 1;
+
+	  // Плавное нарастание в начале композиции
+	  if (audio.currentTime < fadeInSeconds) {
+    level = Math.min(level, audio.currentTime / fadeInSeconds);
+  }
+
+  // Плавное затухание в конце композиции
+  if (Number.isFinite(audio.duration)) {
+    const remaining = audio.duration - audio.currentTime;
+
+    if (remaining < fadeOutSeconds) {
+      level = Math.min(
+        level,
+        Math.max(0, remaining / fadeOutSeconds)
+      );
+    }
+  }
+
+  audio.volume = Math.max(
+    0,
+    Math.min(1, targetVolume * level)
+  );
+}
+
+// Плавное обновление громкости
+function runFade() {
+  updateFadeVolume();
+
+  if (!audio.paused && !audio.ended) {
+	  fadeFrame = requestAnimationFrame(runFade);
+	  } else {
+	  fadeFrame = null;
+	  }
+	  }
+
+	  audio.volume = targetVolume;
+
+	  function formatTime(seconds) {
+	  if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function setPlaying(isPlaying) {
+  playButton.classList.toggle('is-playing', isPlaying);
+  playButton.setAttribute(
+    'aria-label',
+    isPlaying ? 'Пауза' : 'Воспроизвести'
+  );
+}
+
+      playButton.addEventListener('click', () => {
+        // Инициализируем аудиограф на любом первом нажатии, даже если autoplay
+        // уже успел начать воспроизведение до клика пользователя.
+        if (typeof window.activatePortalAudioAnalysis === 'function') {
+          window.activatePortalAudioAnalysis();
+        }
+
+        if (audio.paused) {
+          let playRequest;
+          try {
+            playRequest = audio.play();
+          } catch (error) {
+            console.error('Не удалось запустить музыку:', error);
+            if (playerStatus) playerStatus.textContent = 'Не удалось запустить музыку.';
+            return;
+          }
+
+          Promise.resolve(playRequest).then(() => {
+            if (playerStatus) playerStatus.textContent = 'Сейчас играет';
+          }).catch(error => {
+            console.error('Не удалось запустить музыку:', error);
+            if (playerStatus) playerStatus.textContent = 'Не удалось запустить музыку. Проверь track.mp3.';
+          });
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener('play', () => {
+  setPlaying(true);
+
+  if (fadeFrame !== null) {
+    cancelAnimationFrame(fadeFrame);
+  }
+
+  runFade();
+});
+
+audio.addEventListener('pause', () => {
+  setPlaying(false);
+
+  if (fadeFrame !== null) {
+    cancelAnimationFrame(fadeFrame);
+    fadeFrame = null;
+  }
+});
+
+      audio.addEventListener('loadedmetadata', () => {
+        durationLabel.textContent = formatTime(audio.duration);
+        if (playerStatus) playerStatus.textContent = 'A quiet place beyond the noise';
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        currentTimeLabel.textContent = formatTime(audio.currentTime);
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+          progress.value = String((audio.currentTime / audio.duration) * 100);
+          progress.style.setProperty('--range-progress', `${progress.value}%`);
+        }
+      });
+
+      progress.addEventListener('input', () => {
+        if (Number.isFinite(audio.duration) && audio.duration > 0) {
+		  audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+		  progress.style.setProperty('--range-progress', `${progress.value}%`);
+		  }
+		  });
+		  volume.addEventListener('input', () => {
+		  targetVolume = Number(volume.value);
+
+		  if (audio.paused) {
+		  audio.volume = targetVolume;
+		  } else {
+		  updateFadeVolume();
+		  }
+
+		  volumeValue.textContent = `${Math.round(targetVolume * 100)}%`;
+		  volume.style.setProperty('--range-progress', `${targetVolume * 100}%`);
+		  });
+
+		  audio.addEventListener('ended', () => {
+
+		  // Останавливаем анимацию затухания
+		  if (fadeFrame !== null) {
+		  cancelAnimationFrame(fadeFrame);
+		  fadeFrame = null;
+		  }
+
+		  // Возвращаем исходную громкость
+		  audio.volume = targetVolume;
+
+		  // Обновляем состояние плеера
+		  setPlaying(false);
+		  progress.value = '0';
+		  progress.style.setProperty('--range-progress', '0%');
+		  if (playerStatus) playerStatus.textContent = 'Воспроизведение завершено';
+
+		  });
+
+		  audio.addEventListener('error', () => {
+		  console.error('Ошибка загрузки аудио:', audio.currentSrc, audio.error);
+		  playButton.title = 'Не удалось загрузить track.mp3. Проверь имя файла и путь.';
+		  if (playerStatus) playerStatus.textContent = 'Не удалось загрузить track.mp3.';
+		  });
+
+		  volume.style.setProperty('--range-progress', `${Number(volume.value) * 100}%`);
+		  progress.style.setProperty('--range-progress', '0%');
+		  })();
+	  </script>
+	<script>
+		(() => {
+		const left = document.querySelector('.side-panel-left');
+		const right = document.querySelector('.side-panel-right');
+
+		if (!left || !right) return;
+
+		const desktop = window.matchMedia('(min-width: 781px)');
+		const smoothness = 0.07;
+
+		let source = null;
+		let follower = null;
+		let frame = 0;
+		let programmaticPanel = null;
+
+		function animateScroll() {
+		frame = 0;
+
+		if (!desktop.matches || !source || !follower) return;
+
+		const sourceMax = source.scrollHeight - source.clientHeight;
+		const followerMax = follower.scrollHeight - follower.clientHeight;
+
+		if (sourceMax <= 0 || followerMax <= 0) return;
+
+		const ratio = source.scrollTop / sourceMax;
+		const target = ratio * followerMax;
+		const difference = target - follower.scrollTop;
+
+		if (Math.abs(difference) < 0.5) {
+      programmaticPanel = follower;
+      follower.scrollTop = target;
+      return;
     }
 
-    playButton.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
+    programmaticPanel = follower;
+    follower.scrollTop += difference * smoothness;
+
+    frame = requestAnimationFrame(animateScroll);
+  }
+
+  function schedule() {
+    if (!frame) {
+      frame = requestAnimationFrame(animateScroll);
+    }
+  }
+
+  function activate(panel) {
+    if (!desktop.matches) return;
+
+    source = panel;
+    follower = panel === left ? right : left;
+    programmaticPanel = null;
+
+    schedule();
+  }
+
+  [left, right].forEach(panel => {
+    ['wheel', 'touchstart', 'pointerdown'].forEach(event => {
+      panel.addEventListener(event, () => activate(panel), {
+        passive: true
+      });
+    });
+
+    panel.addEventListener('scroll', () => {
+      if (!desktop.matches || panel === programmaticPanel) return;
+
+      if (panel !== source) {
+        source = panel;
+        follower = panel === left ? right : left;
       }
-    });
 
-    audio.addEventListener("play", () => {
-      playButton.textContent = "Ⅱ";
-      playButton.setAttribute("aria-label", "Пауза");
-    });
+      schedule();
+    }, { passive: true });
+  });
 
-    audio.addEventListener("pause", () => {
-      playButton.textContent = "▶";
-      playButton.setAttribute("aria-label", "Воспроизвести");
-    });
+  window.addEventListener('resize', () => {
+    if (!desktop.matches) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      source = null;
+      follower = null;
+      programmaticPanel = null;
+    }
+  });
+})();
+	</script>
+	<script>
+		(() => {
+		const toggle = document.getElementById('interfaceToggle');
+		const restore = document.getElementById('showInterfaceButton');
+		const floatingPlay = document.getElementById('floatingPlayButton');
+		const mainPlay = document.getElementById('playButton');
+		const audio = document.getElementById('audio');
 
-    audio.addEventListener("loadedmetadata", () => {
-      duration.textContent = formatTime(audio.duration);
-    });
+		if (!toggle || !restore || !floatingPlay) return;
 
-    audio.addEventListener("timeupdate", () => {
-      currentTime.textContent = formatTime(audio.currentTime);
+		function setImmersive(hidden) {
+		document.body.classList.toggle('is-immersive', hidden);
+		toggle.setAttribute('aria-expanded', String(!hidden));
 
-      if (audio.duration) {
-        progress.value = (audio.currentTime / audio.duration) * 100;
+		if (!hidden) {
+		toggle.focus();
+		}
+		}
+
+		toggle.addEventListener('click', () => {
+		setImmersive(true);
+		});
+
+		restore.addEventListener('click', () => {
+		setImmersive(false);
+		});
+
+		// Плавающая кнопка использует основной плеер.
+		floatingPlay.addEventListener('click', () => {
+		if (mainPlay) mainPlay.click();
+		});
+
+		function updateFloatingButton() {
+		if (!audio) return;
+
+		const playing = !audio.paused;
+
+		floatingPlay.classList.toggle('is-playing', playing);
+		floatingPlay.setAttribute(
+		'aria-label',
+		playing ? 'Пауза' : 'Воспроизвести'
+		);
+		}
+
+		if (audio) {
+		let autoHideTimer = null;
+
+		audio.addEventListener('play', () => {
+		updateFloatingButton();
+
+		// Автоматически скрываем интерфейс через 3 секунды после начала музыки.
+		// Если пользователь поставит музыку на паузу, таймер отменится.
+		if (autoHideTimer !== null) clearTimeout(autoHideTimer);
+		autoHideTimer = setTimeout(() => {
+		autoHideTimer = null;
+		if (!audio.paused) setImmersive(true);
+		}, 3000);
+		});
+
+		audio.addEventListener('pause', () => {
+		if (autoHideTimer !== null) {
+		clearTimeout(autoHideTimer);
+		autoHideTimer = null;
+		}
+		updateFloatingButton();
+		});
+		audio.addEventListener('ended', () => {
+		if (autoHideTimer !== null) {
+		clearTimeout(autoHideTimer);
+		autoHideTimer = null;
+		}
+		updateFloatingButton();
+		});
+		updateFloatingButton();
+		}
+
+		// Escape возвращает панели.
+		document.addEventListener('keydown', event => {
+		if (
+		event.key === 'Escape' &&
+		document.body.classList.contains('is-immersive')
+		) {
+		setImmersive(false);
+		}
+		});
+		})();
+	</script>\n  <script>
+    // Лёгкий аудиореактивный портал. Web Audio используется только для анализа;
+    // сигнал обязательно проходит через analyser -> destination, поэтому звук не теряется.
+    (() => {
+      const canvas = document.getElementById('auraCanvas');
+      const audio = document.getElementById('audio');
+      if (!canvas || !audio) return;
+
+      let ctx;
+      try {
+        ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+      } catch (_) {
+        ctx = canvas.getContext('2d', { alpha: true });
       }
-    });
+      if (!ctx) return;
 
-    progress.addEventListener("input", () => {
-      if (audio.duration) {
-        audio.currentTime = (progress.value / 100) * audio.duration;
+      const TAU = Math.PI * 2;
+      // Более насыщенная палитра: фиолетовый, электрический синий, бирюза, розовый и золото.
+      const palette = [
+        [174, 76, 255],
+        [63, 153, 255],
+        [64, 232, 224],
+        [255, 105, 190],
+        [255, 190, 82],
+        [226, 205, 255]
+      ];
+
+      // Текстуры свечения создаются один раз и переиспользуются частицами.
+      // Это заметнее простого кружка, но легче постоянного shadowBlur на каждом кадре.
+      const glowSprites = new Map();
+      function getGlowSprite(color) {
+        const key = color.join(',');
+        if (glowSprites.has(key)) return glowSprites.get(key);
+
+        const sprite = document.createElement('canvas');
+        const spriteSize = 96;
+        sprite.width = spriteSize;
+        sprite.height = spriteSize;
+        const glowContext = sprite.getContext('2d');
+        const [r, g, b] = color;
+        const gradient = glowContext.createRadialGradient(48, 48, 1, 48, 48, 48);
+        gradient.addColorStop(0, 'rgba(255,255,255,0.98)');
+        gradient.addColorStop(0.075, `rgba(${r},${g},${b},0.96)`);
+        gradient.addColorStop(0.24, `rgba(${r},${g},${b},0.62)`);
+        gradient.addColorStop(0.52, `rgba(${r},${g},${b},0.22)`);
+        gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
+        glowContext.fillStyle = gradient;
+        glowContext.fillRect(0, 0, spriteSize, spriteSize);
+        glowSprites.set(key, sprite);
+        return sprite;
       }
-    });
+      palette.forEach(getGlowSprite);
 
-    volume.addEventListener("input", () => {
-      audio.volume = Number(volume.value);
-    });
+      let width = 0;
+      let height = 0;
+      let pixelRatio = 1;
+      let animationFrame = 0;
+      let lastFrame = 0;
+      let elapsed = 0;
+      let particles = [];
+      let isSmallScreen = false;
 
-    audio.addEventListener("ended", () => {
-      playButton.textContent = "▶";
-    });
+      // Анализатор подключён к ОСНОВНОМУ audio-элементу.
+      // Важно: цепочка обязательно заканчивается на audioContext.destination,
+      // иначе браузер перестаёт выводить звук.
+      let audioContext = null;
+      let mediaSource = null;
+      let analyser = null;
+      let frequencyData = null;
+      let analyserConnected = false;
+      let analysisError = null;
+      let resumePending = false;
+      let bassEnergy = 0;
+      let midEnergy = 0;
+      let trebleEnergy = 0;
+      let lastMeanLevel = 0;
+
+      function activatePortalAudioAnalysis() {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) {
+          analysisError = 'AudioContext не поддерживается этим браузером';
+          console.warn('[Portal spectrum]', analysisError);
+          return false;
+        }
+
+        try {
+          if (!audioContext) audioContext = new AudioContextClass();
+
+          // Создаём MediaElementSource строго один раз для данного audio-элемента.
+          if (!mediaSource) {
+            mediaSource = audioContext.createMediaElementSource(audio);
+          }
+
+          if (!analyser) {
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 4096;
+            analyser.smoothingTimeConstant = 0.72;
+            analyser.minDecibels = -92;
+            analyser.maxDecibels = -18;
+            frequencyData = new Uint8Array(analyser.frequencyBinCount);
+          }
+
+          if (!analyserConnected) {
+            // Единственный звуковой маршрут: основной плеер -> анализатор -> выход.
+            // Никакого GainNode с нулевой громкостью и никаких скрытых аудиоклонов.
+            mediaSource.connect(analyser);
+            analyser.connect(audioContext.destination);
+            analyserConnected = true;
+            console.info('[Portal spectrum] Основной аудиоплеер подключён к анализатору и аудиовыходу.');
+          }
+
+          if (audioContext.state === 'suspended' && !resumePending) {
+            resumePending = true;
+            audioContext.resume().then(() => {
+              resumePending = false;
+              analysisError = null;
+              console.info('[Portal spectrum] AudioContext:', audioContext.state);
+            }).catch(error => {
+              resumePending = false;
+              analysisError = error && error.message ? error.message : String(error);
+              console.error('[Portal spectrum] Не удалось возобновить AudioContext:', error);
+            });
+          }
+
+          return true;
+        } catch (error) {
+          analysisError = error && error.message ? error.message : String(error);
+          console.error('[Portal spectrum] Ошибка подключения анализатора:', error);
+
+          // Если анализатор не удалось подключить, пытаемся сохранить звук напрямую.
+          // Это резервная ветка на случай ошибки между созданием source и analyser.
+          if (mediaSource && audioContext) {
+            try {
+              mediaSource.disconnect();
+              mediaSource.connect(audioContext.destination);
+              analyserConnected = false;
+              console.warn('[Portal spectrum] Анализ отключён; звук направлен прямо на выход.');
+            } catch (fallbackError) {
+              console.error('[Portal spectrum] Не удалось восстановить прямой аудиовыход:', fallbackError);
+            }
+          }
+          return false;
+        }
+      }
+
+      // Диагностика для проверки реального уровня сигнала в консоли браузера.
+      window.activatePortalAudioAnalysis = activatePortalAudioAnalysis;
+      window.__portalAudioDiagnostic = () => {
+        let peak = 0;
+        let nonZeroBins = 0;
+        if (analyser && frequencyData && audioContext && audioContext.state === 'running') {
+          analyser.getByteFrequencyData(frequencyData);
+          for (let i = 0; i < frequencyData.length; i++) {
+            const value = frequencyData[i];
+            if (value > peak) peak = value;
+            if (value > 3) nonZeroBins++;
+          }
+        }
+        return {
+          currentSrc: audio.currentSrc,
+          readyState: audio.readyState,
+          audioPaused: audio.paused,
+          audioContextState: audioContext ? audioContext.state : 'not-created',
+          analyserConnected,
+          outputRoute: analyserConnected ? 'audio -> analyser -> destination' : 'native / fallback',
+          peakFrequencyBin: peak,
+          nonZeroFrequencyBins: nonZeroBins,
+          lastMeanLevel,
+          error: analysisError
+        };
+      };
+
+      function averageBand(minHz, maxHz) {
+        if (!analyser || !frequencyData || !audioContext) return 0;
+        const binHz = audioContext.sampleRate / analyser.fftSize;
+        const first = Math.max(1, Math.floor(minHz / binHz));
+        const last = Math.min(frequencyData.length - 1, Math.ceil(maxHz / binHz));
+        let total = 0;
+        let count = 0;
+        for (let i = first; i <= last; i++) {
+          total += frequencyData[i];
+          count++;
+        }
+        return count ? total / count : 0;
+      }
+
+      function updateAudioEnergy() {
+        let bassTarget = 0;
+        let midTarget = 0;
+        let trebleTarget = 0;
+
+        if (!audio.paused && !audio.ended && analyser && frequencyData && audioContext && audioContext.state === 'running') {
+          analyser.getByteFrequencyData(frequencyData);
+          // Нормализуем реальный сигнал по диапазонам. Усиление повышает видимость
+          // тихих частот, но не создаёт искусственную анимацию при отсутствии сигнала.
+          bassTarget = Math.min(1, Math.pow(averageBand(35, 160) / 34, 0.70) * 1.22);
+          midTarget = Math.min(1, Math.pow(averageBand(160, 2200) / 44, 0.72) * 1.18);
+          trebleTarget = Math.min(1, Math.pow(averageBand(2200, 12000) / 50, 0.72) * 1.14);
+        }
+
+        const ease = (current, target) => current + (target - current) * (target > current ? 0.48 : 0.18);
+        bassEnergy = ease(bassEnergy, bassTarget);
+        midEnergy = ease(midEnergy, midTarget);
+        trebleEnergy = ease(trebleEnergy, trebleTarget);
+      }
+
+      // Создание частиц портала. Эта функция была потеряна в предыдущей сборке.
+      function makeParticle(randomDepth = true) {
+        return {
+          angle: Math.random() * TAU,
+          depth: randomDepth ? Math.random() : 0.018 + Math.random() * 0.04,
+          speed: 0.32 + Math.random() * 0.34,
+          size: 0.65 + Math.random() * 1.15,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          twinkle: Math.random() * TAU
+        };
+      }
+
+      // Подгоняем Canvas под размер окна с ограничением DPR до 1x для FPS.
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        isSmallScreen = width < 780;
+        pixelRatio = 1;
+        canvas.width = Math.max(1, Math.round(width * pixelRatio));
+        canvas.height = Math.max(1, Math.round(height * pixelRatio));
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        const count = isSmallScreen ? 48 : 96;
+        particles = Array.from({ length: count }, () => makeParticle(true));
+        if (!animationFrame && !document.hidden) startAnimation();
+      }
+
+      // Отдельные слои спектра в шапках блоков и нижняя общая диаграмма.
+      const panelSpectrumSurfaces = Array.from(document.querySelectorAll('.panel-spectrum-canvas')).map(canvas => ({
+        canvas,
+        context: canvas.getContext('2d'),
+        width: 0,
+        height: 0
+      }));
+      const immersiveSpectrumElement = document.getElementById('immersiveSpectrum');
+      const immersiveSpectrumSurface = immersiveSpectrumElement ? {
+        canvas: immersiveSpectrumElement,
+        context: immersiveSpectrumElement.getContext('2d'),
+        width: 0,
+        height: 0
+      } : null;
+      const spectrumPalette = [
+        [174, 76, 255], [104, 120, 255], [63, 153, 255],
+        [64, 210, 224], [255, 105, 190], [255, 190, 82]
+      ];
+
+      function clearSpectrumSurface(surface) {
+        if (!surface || !surface.context) return;
+        const w = surface.canvas.clientWidth;
+        const h = surface.canvas.clientHeight;
+        if (!w || !h) return;
+        if (surface.width !== w || surface.height !== h) {
+          surface.width = w;
+          surface.height = h;
+          surface.canvas.width = w;
+          surface.canvas.height = h;
+        }
+        surface.context.clearRect(0, 0, surface.width, surface.height);
+      }
+
+      function drawSpectrumSurface(surface, levels, segmentStart, segmentEnd, isImmersive, playing) {
+        if (!surface || !surface.context) return;
+        const w = surface.canvas.clientWidth;
+        const h = surface.canvas.clientHeight;
+        if (!w || !h) return;
+        if (surface.width !== w || surface.height !== h) {
+          surface.width = w;
+          surface.height = h;
+          surface.canvas.width = w;
+          surface.canvas.height = h;
+        }
+
+        const c = surface.context;
+        c.clearRect(0, 0, w, h);
+        const count = isImmersive
+          ? Math.max(150, Math.min(260, Math.floor(w / 3.2)))
+          : Math.max(90, Math.min(180, Math.floor(w / 2.8)));
+        const inset = isImmersive ? 5 : 4;
+        const usableWidth = Math.max(1, w - inset * 2);
+        const gap = isImmersive ? 0.9 : 0.7;
+        const barWidth = Math.max(0.85, (usableWidth - gap * (count - 1)) / count);
+        const baseline = h - 1;
+        const maxHeight = isImmersive ? Math.min(34, h - 5) : Math.min(28, h - 4);
+
+        // Тихая световая линия основания остаётся видимой и в паузе.
+        c.fillStyle = 'rgba(185, 177, 255, 0.22)';
+        c.fillRect(inset, baseline, usableWidth, 1);
+
+        for (let i = 0; i < count; i++) {
+          const localPosition = count <= 1 ? 0 : i / (count - 1);
+          const spectrumPosition = segmentStart + localPosition * (segmentEnd - segmentStart);
+          const sample = Math.min(levels.length - 1, Math.max(0, Math.round(spectrumPosition * (levels.length - 1))));
+          const level = levels[sample] || 0;
+          const barHeight = Math.max(0.8, 0.8 + Math.pow(level, 0.78) * maxHeight);
+          const x = inset + i * (barWidth + gap);
+          const paletteIndex = Math.min(spectrumPalette.length - 1, Math.floor(localPosition * spectrumPalette.length));
+          const [r, g, b] = spectrumPalette[paletteIndex];
+          const alpha = playing && analyserConnected && analyser ? 0.96 : 0.14;
+          const top = baseline - barHeight;
+
+          // Мягкая широкая подложка + яркая сердцевина без вспышек и shadowBlur.
+          c.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.22})`;
+          c.fillRect(x - 0.25, top - 0.5, barWidth + 0.5, barHeight + 1);
+          c.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+          c.fillRect(x, top, barWidth, barHeight);
+          c.fillStyle = `rgba(244, 241, 255, ${playing && analyserConnected && analyser ? 0.72 : 0.08})`;
+          c.fillRect(x, top, barWidth, 1);
+        }
+      }
+
+      function drawPortal(now) {
+        if (document.hidden) {
+          animationFrame = 0;
+          return;
+        }
+
+        // 50 FPS достаточно для плавного полёта и снижает постоянную нагрузку на GPU/CPU.
+        if (lastFrame && now - lastFrame < 20) {
+          animationFrame = window.requestAnimationFrame(drawPortal);
+          return;
+        }
+        const dt = lastFrame ? Math.min((now - lastFrame) / 1000, 0.05) : 0.02;
+        lastFrame = now;
+        elapsed += dt;
+        updateAudioEnergy();
+        ctx.clearRect(0, 0, width, height);
+
+        const playing = !audio.paused && !audio.ended;
+        const immersive = document.body.classList.contains('is-immersive');
+        const energy = bassEnergy * 0.58 + midEnergy * 0.27 + trebleEnergy * 0.15;
+        const movement = (playing ? 0.94 : 0.56) + bassEnergy * 0.72 + midEnergy * 0.18;
+        const pulse = 0.42 + 0.18 * Math.sin(elapsed * (playing ? 2.1 : 0.82)) + energy * 0.58;
+        const cx = width * 0.5;
+        const cy = height * 0.51;
+        const rx = Math.max(width * 0.55, height * 0.76);
+        const ry = Math.max(height * 0.56, width * 0.33);
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        ctx.lineCap = 'round';
+
+        // Спектр вынесен в отдельные Canvas-слои: три части над панелями
+        // и единая широкая полоса снизу в режиме погружения. Портал остаётся независимым.
+        const spectrumBars = isSmallScreen ? 144 : 240;
+        if (!window.__portalSpectrumLevels || window.__portalSpectrumLevels.length !== spectrumBars) {
+          window.__portalSpectrumLevels = new Float32Array(spectrumBars);
+        }
+        const levels = window.__portalSpectrumLevels;
+        for (let i = 0; i < spectrumBars; i++) {
+          let target = 0;
+          if (playing && analyserConnected && analyser && frequencyData && audioContext && audioContext.state === 'running') {
+            // Логарифмическая раскладка частот: басы слева, высокие частоты справа.
+            const position = i / Math.max(1, spectrumBars - 1);
+            const minHz = 38;
+            const maxHz = Math.min(15000, audioContext.sampleRate * 0.46);
+            const hz = minHz * Math.pow(maxHz / minHz, position);
+            const binHz = audioContext.sampleRate / analyser.fftSize;
+            const centerBin = Math.max(1, Math.min(frequencyData.length - 2, Math.round(hz / binHz)));
+            const raw = Math.max(
+              frequencyData[centerBin - 1],
+              frequencyData[centerBin],
+              frequencyData[centerBin + 1]
+            ) / 255;
+            // Усиление тихих деталей спектра без искусственной синусоидальной анимации.
+            target = Math.min(1, Math.pow(raw, 0.72) * 1.55);
+          }
+          // Плавная атака и затухание: столбики двигаются только по реальному аудиосигналу.
+          const smoothing = target > levels[i] ? 0.34 : 0.12;
+          levels[i] += (target - levels[i]) * smoothing;
+        }
+
+        if (immersive) {
+          drawSpectrumSurface(immersiveSpectrumSurface, levels, 0, 1, true, playing);
+          panelSpectrumSurfaces.forEach(surface => clearSpectrumSurface(surface));
+        } else {
+          clearSpectrumSurface(immersiveSpectrumSurface);
+          drawSpectrumSurface(panelSpectrumSurfaces[0], levels, 0, 0.36, false, playing);
+          drawSpectrumSurface(panelSpectrumSurfaces[1], levels, 0.30, 0.70, false, playing);
+          drawSpectrumSurface(panelSpectrumSurfaces[2], levels, 0.64, 1, false, playing);
+        }
+
+        // Небольшое количество тонких направляющих лучей вместо динамических градиентов.
+        const rayCount = isSmallScreen ? 6 : 11;
+        for (let i = 0; i < rayCount; i++) {
+          const angle = TAU * i / rayCount + Math.sin(elapsed * 0.11 + i) * 0.012;
+          const x2 = cx + Math.cos(angle) * rx * 1.04;
+          const y2 = cy + Math.sin(angle) * ry * 1.04;
+          const rayAlpha = (0.035 + energy * 0.11) * (0.68 + pulse * 0.32);
+          ctx.strokeStyle = i % 3 === 0
+            ? `rgba(255, 198, 137, ${rayAlpha * 0.72})`
+            : `rgba(154, 143, 255, ${rayAlpha})`;
+          ctx.lineWidth = 0.65 + energy * 0.85;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        }
+
+        // Частицы вылетают из портала к зрителю; бас усиливает скорость и размер.
+        for (const particle of particles) {
+          const previousDepth = particle.depth;
+          particle.depth += particle.speed * dt * movement * (immersive ? 1.12 : 0.92);
+          if (particle.depth >= 1.03) Object.assign(particle, makeParticle(false));
+
+          const depth = particle.depth;
+          const perspective = 0.085 + Math.pow(depth, 1.62) * 1.02;
+          const previousPerspective = 0.085 + Math.pow(Math.max(0, previousDepth - 0.045), 1.62) * 1.02;
+          const cos = Math.cos(particle.angle);
+          const sin = Math.sin(particle.angle);
+          const x = cx + cos * rx * perspective;
+          const y = cy + sin * ry * perspective;
+          const tailX = cx + cos * rx * previousPerspective;
+          const tailY = cy + sin * ry * previousPerspective;
+          const twinkle = 0.70 + 0.30 * Math.sin(elapsed * 4.2 + particle.twinkle);
+          const alpha = Math.min(1, 0.2 + depth * 0.82) * twinkle * (playing ? 0.70 + energy * 0.34 : 0.52);
+          const size = particle.size * (0.62 + depth * 1.9 + bassEnergy * 0.52 + trebleEnergy * 0.18);
+          const [r, g, b] = particle.color;
+
+          // Цветной след-комета: становится толще по мере приближения к зрителю.
+          ctx.globalCompositeOperation = 'lighter';
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${Math.min(1, alpha * 0.95)})`;
+          ctx.lineWidth = Math.max(1.1, size * 0.95);
+          ctx.beginPath();
+          ctx.moveTo(tailX, tailY);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+
+          // Яркий заранее отрисованный ореол — не используем дорогой shadowBlur на каждом кадре.
+          const glowSprite = getGlowSprite(particle.color);
+          const glowSize = 15 + depth * 27 + bassEnergy * 10 + trebleEnergy * 5;
+          ctx.globalAlpha = Math.min(1, alpha * (0.78 + energy * 0.28));
+          ctx.drawImage(glowSprite, x - glowSize / 2, y - glowSize / 2, glowSize, glowSize);
+          ctx.globalAlpha = 1;
+
+          // Светлое ядро даёт ощущение искры внутри цветного свечения.
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, alpha * 0.92)})`;
+          ctx.beginPath();
+          ctx.arc(x, y, Math.max(1.05, size * 0.62), 0, TAU);
+          ctx.fill();
+          ctx.globalCompositeOperation = 'screen';
+        }
+
+        // Редкие искры по внешнему краю тоннеля.
+        const sparkCount = immersive ? (isSmallScreen ? 7 : 12) : (isSmallScreen ? 5 : 9);
+        for (let i = 0; i < sparkCount; i++) {
+          const angle = TAU * i / sparkCount + elapsed * (i % 2 ? -0.025 : 0.03);
+          const wobble = 0.91 + 0.065 * Math.sin(elapsed * 1.3 + i * 2.1);
+          const x = cx + Math.cos(angle) * rx * wobble;
+          const y = cy + Math.sin(angle) * ry * wobble;
+          const alpha = (0.20 + pulse * (0.16 + energy * 0.22)) * (0.58 + 0.42 * Math.sin(elapsed * 2 + i));
+          ctx.fillStyle = i % 4 === 0
+            ? `rgba(255, 211, 158, ${alpha})`
+            : `rgba(174, 139, 255, ${alpha})`;
+          ctx.beginPath();
+          ctx.arc(x, y, 1.2 + pulse * 1.25, 0, TAU);
+          ctx.fill();
+        }
+
+        ctx.restore();
+        animationFrame = window.requestAnimationFrame(drawPortal);
+      }
+
+      function startAnimation() {
+        if (!animationFrame && !document.hidden) {
+          lastFrame = 0;
+          animationFrame = window.requestAnimationFrame(drawPortal);
+        }
+      }
+
+      function stopAnimation() {
+        if (animationFrame) window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+        lastFrame = 0;
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAnimation();
+        else startAnimation();
+      });
+      startAnimation();
+    })();
   </script>
+
 </body>
 </html>
-
